@@ -48,6 +48,8 @@ import org.springframework.core.AliasRegistry;
 public interface BeanDefinitionRegistry extends AliasRegistry {
 
 	/**
+	 * 在此注册表中注册一个新的bean定义。
+	 *
 	 * Register a new bean definition with this registry.
 	 * Must support RootBeanDefinition and ChildBeanDefinition.
 	 * @param beanName the name of the bean instance to register
@@ -63,6 +65,8 @@ public interface BeanDefinitionRegistry extends AliasRegistry {
 			throws BeanDefinitionStoreException;
 
 	/**
+	 * 删除指定bean名称的BeanDefinition
+	 *
 	 * Remove the BeanDefinition for the given name.
 	 * @param beanName the name of the bean instance to register
 	 * @throws NoSuchBeanDefinitionException if there is no such bean definition
@@ -70,6 +74,8 @@ public interface BeanDefinitionRegistry extends AliasRegistry {
 	void removeBeanDefinition(String beanName) throws NoSuchBeanDefinitionException;
 
 	/**
+	 * 返回注册表中定义的所有bean的名称
+	 *
 	 * Return the BeanDefinition for the given bean name.
 	 * @param beanName name of the bean to find a definition for
 	 * @return the BeanDefinition for the given name (never {@code null})
@@ -78,6 +84,8 @@ public interface BeanDefinitionRegistry extends AliasRegistry {
 	BeanDefinition getBeanDefinition(String beanName) throws NoSuchBeanDefinitionException;
 
 	/**
+	 * 获取BeanDefinition的数量
+	 *
 	 * Check if this registry contains a bean definition with the given name.
 	 * @param beanName the name of the bean to look for
 	 * @return if this registry contains a bean definition with the given name

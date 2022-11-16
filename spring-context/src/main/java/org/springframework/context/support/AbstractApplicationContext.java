@@ -521,37 +521,60 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			// Prepare this context for refreshing.
 			prepareRefresh();
 
+			/**
+			 * 生成一个新的beanFactory[模板方法模式，调用子类方法刷新beanFactory]
+			 * 如果beanFactory存在，则销毁其中的bean，并销毁beanFactory
+			 * 创建一个新的beanFactory
+			 * 设置一些bean初始化的属性 overriding及circleReference
+			 * 加载bean的定义
+			 */
 			// Tell the subclass to refresh the internal bean factory.
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
+			// 给beanFactory设置一些附加属性，例如一些监听器等
 			// Prepare the bean factory for use in this context.
 			prepareBeanFactory(beanFactory);
 
 			try {
+				/**
+				 * 子类容器bean factory创建后置处理
+				 * 添加一些监听器等
+				 */
 				// Allows post-processing of the bean factory in context subclasses.
 				postProcessBeanFactory(beanFactory);
 
+				/**
+				 * beanFactory后置处理器
+				 * 执行容器中注册的bean factory相关的一些处理器
+				 */
 				// Invoke factory processors registered as beans in the context.
 				invokeBeanFactoryPostProcessors(beanFactory);
 
+				// 注册bean的后置处理器[bean创建的拦截器]到容器中
 				// Register bean processors that intercept bean creation.
 				registerBeanPostProcessors(beanFactory);
 
+				// 初始化国际化资源等
 				// Initialize message source for this context.
 				initMessageSource();
 
+				// 初始化事件广播
 				// Initialize event multicaster for this context.
 				initApplicationEventMulticaster();
 
+				// 初始化特殊容器的特殊bean(模板方法模式，由子类容器决定)，比如UI初始化
 				// Initialize other special beans in specific context subclasses.
 				onRefresh();
 
+				// 注册bean的监听器
 				// Check for listener beans and register them.
 				registerListeners();
 
+				// 初始化非懒加载单例bean
 				// Instantiate all remaining (non-lazy-init) singletons.
 				finishBeanFactoryInitialization(beanFactory);
 
+				// 初始化完成，发布一些事件
 				// Last step: publish corresponding event.
 				finishRefresh();
 			}
