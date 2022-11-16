@@ -97,6 +97,9 @@ public interface Log {
 	boolean isInfoEnabled();
 
 	/**
+	 * 判断是否启用了Debug
+	 * @return 如果启用了return true
+	 *
 	 * Is debug logging currently enabled?
 	 * <p>Call this method to prevent having to perform expensive operations
 	 * (for example, <code>String</code> concatenation)
