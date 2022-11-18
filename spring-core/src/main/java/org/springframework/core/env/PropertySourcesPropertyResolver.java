@@ -19,6 +19,8 @@ package org.springframework.core.env;
 import org.springframework.lang.Nullable;
 
 /**
+ * 解析属性值的实现类
+ *
  * {@link PropertyResolver} implementation that resolves property values against
  * an underlying set of {@link PropertySources}.
  *

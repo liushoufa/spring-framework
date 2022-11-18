@@ -19,6 +19,8 @@ package org.springframework.core.env;
 import org.springframework.lang.Nullable;
 
 /**
+ * 用于解析任何基础源的属性的接口类定义
+ *
  * Interface for resolving properties against any underlying source.
  *
  * @author Chris Beams
@@ -30,12 +32,16 @@ import org.springframework.lang.Nullable;
 public interface PropertyResolver {
 
 	/**
+	 * 返回给定属性键是否可解析
+	 *
 	 * Return whether the given property key is available for resolution,
 	 * i.e. if the value for the given key is not {@code null}.
 	 */
 	boolean containsProperty(String key);
 
 	/**
+	 * 返回属性值
+	 *
 	 * Return the property value associated with the given key,
 	 * or {@code null} if the key cannot be resolved.
 	 * @param key the property name to resolve
@@ -47,6 +53,7 @@ public interface PropertyResolver {
 	String getProperty(String key);
 
 	/**
+	 * 返回属性值，如果值不存在返回defaultValue
 	 * Return the property value associated with the given key, or
 	 * {@code defaultValue} if the key cannot be resolved.
 	 * @param key the property name to resolve
@@ -57,20 +64,24 @@ public interface PropertyResolver {
 	String getProperty(String key, String defaultValue);
 
 	/**
+	 * 返回属性值
+	 *
 	 * Return the property value associated with the given key,
 	 * or {@code null} if the key cannot be resolved.
 	 * @param key the property name to resolve
-	 * @param targetType the expected type of the property value
+	 * @param targetType the expected type of the property value; 返回值的预期类型
 	 * @see #getRequiredProperty(String, Class)
 	 */
 	@Nullable
 	<T> T getProperty(String key, Class<T> targetType);
 
 	/**
+	 * 返回属性值，如果值不存在返回defaultValue
+	 *
 	 * Return the property value associated with the given key,
 	 * or {@code defaultValue} if the key cannot be resolved.
 	 * @param key the property name to resolve
-	 * @param targetType the expected type of the property value
+	 * @param targetType the expected type of the property value; 返回值的预期类型
 	 * @param defaultValue the default value to return if no value is found
 	 * @see #getRequiredProperty(String, Class)
 	 */
@@ -91,6 +102,8 @@ public interface PropertyResolver {
 	<T> T getRequiredProperty(String key, Class<T> targetType) throws IllegalStateException;
 
 	/**
+	 * 解析给定文本中的$｛…｝占位符，用｛@link#getProperty｝解析的相应属性值替换它们。没有默认值的不可解析占位符将被忽略，并以不变的方式传递。
+	 *
 	 * Resolve ${...} placeholders in the given text, replacing them with corresponding
 	 * property values as resolved by {@link #getProperty}. Unresolvable placeholders with
 	 * no default value are ignored and passed through unchanged.
