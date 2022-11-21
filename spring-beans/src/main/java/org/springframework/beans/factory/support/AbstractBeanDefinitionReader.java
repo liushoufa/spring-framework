@@ -216,7 +216,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 			throw new BeanDefinitionStoreException(
 					"Cannot load bean definitions from location [" + location + "]: no ResourceLoader available");
 		}
-
+		// 判断资源加载器的类型，可以加载不同类型的资源
 		if (resourceLoader instanceof ResourcePatternResolver) {
 			// Resource pattern matching available.
 			try {
@@ -254,6 +254,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 		Assert.notNull(locations, "Location array must not be null");
 		int count = 0;
 		for (String location : locations) {
+			// 加载每一个配置文件
 			count += loadBeanDefinitions(location);
 		}
 		return count;

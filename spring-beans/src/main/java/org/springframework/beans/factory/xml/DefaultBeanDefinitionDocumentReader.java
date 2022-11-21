@@ -93,6 +93,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	@Override
 	public void registerBeanDefinitions(Document doc, XmlReaderContext readerContext) {
 		this.readerContext = readerContext;
+		// 得到 Document 元素，注册 bean 信息（堆栈点）
 		doRegisterBeanDefinitions(doc.getDocumentElement());
 	}
 
@@ -146,6 +147,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		}
 
 		preProcessXml(root);
+		// 解析 dom 对象
 		parseBeanDefinitions(root, this.delegate);
 		postProcessXml(root);
 
@@ -173,9 +175,11 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 				if (node instanceof Element) {
 					Element ele = (Element) node;
 					if (delegate.isDefaultNamespace(ele)) {
+						// 解析元素
 						parseDefaultElement(ele, delegate);
 					}
 					else {
+						// 如果没有在 delegate 中找到对应的标准，则代表该元素为自定义元素
 						delegate.parseCustomElement(ele);
 					}
 				}
@@ -193,6 +197,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		else if (delegate.nodeNameEquals(ele, ALIAS_ELEMENT)) {
 			processAliasRegistration(ele);
 		}
+		// 该 dom 元素在 delegate 中有对应的定义，可以被解析为 bean 的图纸相关信息
 		else if (delegate.nodeNameEquals(ele, BEAN_ELEMENT)) {
 			processBeanDefinition(ele, delegate);
 		}
@@ -303,10 +308,12 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	 * and registering it with the registry.
 	 */
 	protected void processBeanDefinition(Element ele, BeanDefinitionParserDelegate delegate) {
+		// 将 dom 元素解析为一个 BeanDefinitionHolder 对象
 		BeanDefinitionHolder bdHolder = delegate.parseBeanDefinitionElement(ele);
 		if (bdHolder != null) {
 			bdHolder = delegate.decorateBeanDefinitionIfRequired(ele, bdHolder);
 			try {
+				// 将 bean 信息注册到档案馆中
 				// Register the final decorated instance.
 				BeanDefinitionReaderUtils.registerBeanDefinition(bdHolder, getReaderContext().getRegistry());
 			}
