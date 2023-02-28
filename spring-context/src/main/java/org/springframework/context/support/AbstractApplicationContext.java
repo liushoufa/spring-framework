@@ -522,11 +522,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			prepareRefresh();
 
 			/**
-			 * 生成一个新的beanFactory[模板方法模式，调用子类方法刷新beanFactory]
-			 * 如果beanFactory存在，则销毁其中的bean，并销毁beanFactory
-			 * 创建一个新的beanFactory
-			 * 设置一些bean初始化的属性 overriding及circleReference
-			 * 加载bean的定义
+			 * 刷新 bean 工厂，加载bean定义信息
 			 */
 			// Tell the subclass to refresh the internal bean factory.
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
