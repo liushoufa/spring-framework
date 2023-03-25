@@ -1,0 +1,5 @@
+description = "shoufa"
+
+dependencies {
+    compile(project(":spring-context"))
+}
