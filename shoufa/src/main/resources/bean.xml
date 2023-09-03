@@ -3,5 +3,8 @@
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="user" class="org.springframework.User"/>
+	<bean id="user" class="org.springframework.shoufa.pojo.User"/>
+	<bean id="service1" class="org.springframework.shoufa.service.Service1"/>
+	<bean id="service2" class="org.springframework.shoufa.service.Service2"/>
+	<bean id="service3" class="org.springframework.shoufa.service.Service3"/>
 </beans>
