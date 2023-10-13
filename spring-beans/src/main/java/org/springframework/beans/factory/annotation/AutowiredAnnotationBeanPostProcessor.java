@@ -638,6 +638,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 				}
 			}
 			else {
+				//
 				value = resolveFieldValue(field, bean, beanName);
 			}
 			if (value != null) {
@@ -655,6 +656,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 			TypeConverter typeConverter = beanFactory.getTypeConverter();
 			Object value;
 			try {
+				// 解析依赖
 				value = beanFactory.resolveDependency(desc, beanName, autowiredBeanNames, typeConverter);
 			}
 			catch (BeansException ex) {

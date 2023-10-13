@@ -12,8 +12,16 @@ public class Service1 {
 //	@Autowired
 //	private final Service2 service2;
 
-	@Autowired
+//	@Autowired
 	private Service2 service2;
+
+	public void setService2(Service2 service2) {
+		this.service2 = service2;
+	}
+
+//	public Service1(Service2 service2){
+//		this.service2 = service2;
+//	}
 
 //	@Autowired
 //	private PostProcessorRegistrationDelegate postProcessorRegistrationDelegate;

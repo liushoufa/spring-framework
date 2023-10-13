@@ -6,5 +6,5 @@ import org.springframework.stereotype.Component;
 @Component
 public class CDService1 {
 	@Autowired
-	private CDService1 cdService1;
+	private CDService2 cdService2;
 }

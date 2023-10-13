@@ -7,8 +7,12 @@ import org.springframework.stereotype.Service;
 //@Scope
 public class Service2 {
 
-	@Autowired
+//	@Autowired
 	private Service1 service1;
+
+	public void setService1(Service1 service1) {
+		this.service1 = service1;
+	}
 
 //	public Service2(Service1 service1) {
 //		this.service1 = service1;
